@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BindableLayoutObservableCollectionRepro.Services;
 using Xamarin.Forms;
 
 namespace BindableLayoutObservableCollectionRepro.ViewModels
@@ -9,9 +10,13 @@ namespace BindableLayoutObservableCollectionRepro.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         #region Fields
-        public ObservableCollection<string> _bindableLayoutItemSource;
-        public ObservableCollection<string> _listViewItemSource;
-        public ObservableCollection<string> _collectionViewItemSource;
+        private ItemSourceService _bindableLayoutItemSourceService;
+        private ItemSourceService _listViewItemSourceService;
+        private ItemSourceService _collectionViewItemSourceService;
+
+        private ObservableCollection<string> _bindableLayoutItemSource;
+        private ObservableCollection<string> _listViewItemSource;
+        private ObservableCollection<string> _collectionViewItemSource;
         #endregion
 
         #region Properties
@@ -50,59 +55,72 @@ namespace BindableLayoutObservableCollectionRepro.ViewModels
         public ICommand BindableLayoutAddItemCommand => new Command(async () => await BindableLayoutAddItemAsync());
         public ICommand BindableLayoutRemoveItemCommand => new Command(async () => await BindableLayoutRemoveItemAsync());
         public ICommand BindableLayoutClearItemsCommand => new Command(async () => await BindableLayoutClearItemsAsync());
+
         public ICommand ListViewAddItemCommand => new Command(async () => await ListViewAddItemAsync());
         public ICommand ListViewRemoveItemCommand => new Command(async () => await ListViewRemoveItemAsync());
         public ICommand ListViewClearItemsCommand => new Command(async () => await ListViewClearItemsAsync());
+
+        public ICommand CollectionViewAddItemCommand => new Command(async () => await CollectionViewAddItemAsync());
+        public ICommand CollectionViewRemoveItemCommand => new Command(async () => await CollectionViewRemoveItemAsync());
+        public ICommand CollectionViewClearItemsCommand => new Command(async () => await CollectionViewClearItemsAsync());
         #endregion
 
         #region Methods
         public MainPageViewModel()
         {
-            BindableLayoutItemSource = new ObservableCollection<string>();
-            ListViewItemSource = new ObservableCollection<string>();
-            CollectionViewItemSource = new ObservableCollection<string>();
+            // Initialize an instance of a mock Service for each type of list and get the item source.
+            _bindableLayoutItemSourceService = new ItemSourceService();
+            _listViewItemSourceService = new ItemSourceService();
+            _collectionViewItemSourceService = new ItemSourceService();
+
+            BindableLayoutItemSource = _bindableLayoutItemSourceService.GetItems();
+            ListViewItemSource = _listViewItemSourceService.GetItems();
+            CollectionViewItemSource = _collectionViewItemSourceService.GetItems();
         }
 
         private async Task BindableLayoutAddItemAsync()
         {
-            await Task.Delay(500);
-            BindableLayoutItemSource.Add($"Item {BindableLayoutItemSource.Count + 1}");
+            await _bindableLayoutItemSourceService.AddItemAsync();
         }
 
         private async Task BindableLayoutClearItemsAsync()
         {
-            await Task.Delay(500);
-            BindableLayoutItemSource.Clear();
+            await _bindableLayoutItemSourceService.ClearItemsAsync();
         }
 
         private async Task BindableLayoutRemoveItemAsync()
         {
-            await Task.Delay(500);
-            if (BindableLayoutItemSource.Count > 0)
-            {
-                BindableLayoutItemSource.RemoveAt(BindableLayoutItemSource.Count - 1);
-            }
+            await _bindableLayoutItemSourceService.RemoveItemAsync();
         }
 
         private async Task ListViewAddItemAsync()
         {
-            await Task.Delay(500);
-            ListViewItemSource.Add($"Item {ListViewItemSource.Count + 1}");
+            await _listViewItemSourceService.AddItemAsync();
         }
 
         private async Task ListViewRemoveItemAsync()
         {
-            await Task.Delay(500);
-            if (ListViewItemSource.Count > 0)
-            {
-                ListViewItemSource.RemoveAt(ListViewItemSource.Count - 1);
-            }
+            await _listViewItemSourceService.RemoveItemAsync();
         }
 
         private async Task ListViewClearItemsAsync()
         {
-            await Task.Delay(500);
-            BindableLayoutItemSource.Clear();
+            await _listViewItemSourceService.ClearItemsAsync();
+        }
+
+        private async Task CollectionViewAddItemAsync()
+        {
+            await _collectionViewItemSourceService.AddItemAsync();
+        }
+
+        private async Task CollectionViewRemoveItemAsync()
+        {
+            await _collectionViewItemSourceService.RemoveItemAsync();
+        }
+
+        private async Task CollectionViewClearItemsAsync()
+        {
+            await _collectionViewItemSourceService.ClearItemsAsync();
         }
         #endregion
     }

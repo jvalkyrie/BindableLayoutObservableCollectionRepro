@@ -19,15 +19,43 @@
             Text="BindableLayout"
             FontAttributes="Bold"
             TextColorSelected="White">
-            <Grid Margin="0,75,0,0" RowDefinitions="*,75">
+            <Grid Margin="0,75,0,0" RowDefinitions="auto,*,75">
                 <StackLayout>
+                    <Label Text="BindableLayout (StackLayout)" FontAttributes="Bold"/>
+                    <Label Text="Item source: ObservableCollection"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text=".Add(): "/>
+                                <Span Text="Crash" TextColor="Red"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text=".Remove(): "/>
+                                <Span Text="Crash" TextColor="Red"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text=".Clear(): "/>
+                                <Span Text="Crash" TextColor="Red"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <StackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding BindableLayoutItemSource}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <Label Text="{Binding .}" Padding="20"/>
+                            <Label Text="{Binding}"/>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
-                <Grid Grid.Row="1" ColumnDefinitions="*,*,*" BackgroundColor="LightGray">
+                <Grid Grid.Row="2" ColumnDefinitions="*,*,*" BackgroundColor="LightGray">
                     <Button Text="Add Item" Grid.Column="0" Command="{Binding BindableLayoutAddItemCommand}"/>
                     <Button Text="Remove Item" Grid.Column="1" Command="{Binding BindableLayoutRemoveItemCommand}"/>
                     <Button Text="Clear List" Grid.Column="2"  Command="{Binding BindableLayoutClearItemsCommand}"/>
@@ -47,7 +75,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text=".Add(): "/>
-                                        <Span Text="Crash" TextColor="Red"/>
+                                        <Span Text="No crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -55,7 +83,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text=".Remove(): "/>
-                                        <Span Text="Crash" TextColor="Red"/>
+                                        <Span Text="No crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -63,7 +91,7 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text=".Clear(): "/>
-                                        <Span Text="Crash" TextColor="Red"/>
+                                        <Span Text="No crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -71,7 +99,9 @@
                     </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Label Text="{Binding .}" Padding="20"/>
+                            <ViewCell>
+                                <Label Text="{Binding}"/>
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -89,7 +119,7 @@
             FontAttributes="Bold"
             TextColorSelected="White">
             <Grid Margin="0,75,0,0" RowDefinitions="*,75">
-                <CollectionView>
+                <CollectionView ItemsSource="{Binding CollectionViewItemSource}">
                     <CollectionView.Header>
                         <StackLayout>
                             <Label Text="CollectionView" FontAttributes="Bold"/>
@@ -120,11 +150,16 @@
                             </Label>
                         </StackLayout>
                     </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
                 </CollectionView>
                 <Grid Grid.Row="1" ColumnDefinitions="*,*,*" BackgroundColor="LightGray">
-                    <Button Text="Add Item" Grid.Column="0"/>
-                    <Button Text="Remove Item" Grid.Column="1"/>
-                    <Button Text="Clear List" Grid.Column="2"/>
+                    <Button Text="Add Item" Grid.Column="0"    Command="{Binding CollectionViewAddItemCommand}"/>
+                    <Button Text="Remove Item" Grid.Column="1" Command="{Binding CollectionViewRemoveItemCommand}"/>
+                    <Button Text="Clear List" Grid.Column="2"  Command="{Binding CollectionViewClearItemsCommand}"/>
                 </Grid>
             </Grid>
         </xct:TabViewItem>
