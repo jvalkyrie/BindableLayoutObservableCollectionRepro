@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BindableLayoutObservableCollectionRepro.MainPage"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:viewModels="clr-namespace:BindableLayoutObservableCollectionRepro.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+   
+    <xct:TabView
+        TabStripHeight="100"
+        TabStripBackgroundColor="#3498db">
+
+        <!-- Bindable Layout Tab -->
+        <xct:TabViewItem
+            Text="BindableLayout"
+            FontAttributes="Bold"
+            TextColorSelected="White">
+            <Grid Margin="0,75,0,0" RowDefinitions="*,75">
+                <StackLayout>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding .}" Padding="20"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Grid Grid.Row="1" ColumnDefinitions="*,*,*" BackgroundColor="LightGray">
+                    <Button Text="Add Item" Grid.Column="0" Command="{Binding BindableLayoutAddItemCommand}"/>
+                    <Button Text="Remove Item" Grid.Column="1" Command="{Binding BindableLayoutRemoveItemCommand}"/>
+                    <Button Text="Clear List" Grid.Column="2"  Command="{Binding BindableLayoutClearItemsCommand}"/>
+                </Grid>
+            </Grid>
+        </xct:TabViewItem>
+
+        <!-- List View Tab -->
+        <xct:TabViewItem Text="ListView" FontAttributes="Bold" TextColorSelected="White">
+            <Grid Margin="0,75,0,0" RowDefinitions="*,75">
+                <ListView ItemsSource="{Binding ListViewItemSource}">
+                    <ListView.Header>
+                        <StackLayout>
+                            <Label Text="ListView" FontAttributes="Bold"/>
+                            <Label Text="Item source: ObservableCollection"/>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=".Add(): "/>
+                                        <Span Text="Crash" TextColor="Red"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=".Remove(): "/>
+                                        <Span Text="Crash" TextColor="Red"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=".Clear(): "/>
+                                        <Span Text="Crash" TextColor="Red"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding .}" Padding="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Grid Grid.Row="1" ColumnDefinitions="*,*,*" BackgroundColor="LightGray">
+                    <Button Text="Add Item" Grid.Column="0" Command="{Binding ListViewAddItemCommand}"/>
+                    <Button Text="Remove Item" Grid.Column="1" Command="{Binding ListViewRemoveItemCommand}"/>
+                    <Button Text="Clear List" Grid.Column="2" Command="{Binding ListViewClearItemsCommand}"/>
+                </Grid>
+            </Grid>
+        </xct:TabViewItem>
+
+        <!-- Collection View Tab -->
+        <xct:TabViewItem
+            Text="CollectionView"
+            FontAttributes="Bold"
+            TextColorSelected="White">
+            <Grid Margin="0,75,0,0" RowDefinitions="*,75">
+                <CollectionView>
+                    <CollectionView.Header>
+                        <StackLayout>
+                            <Label Text="CollectionView" FontAttributes="Bold"/>
+                            <Label Text="Item source: ObservableCollection"/>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=".Add(): "/>
+                                        <Span Text="No crash" TextColor="Green"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=".Remove(): "/>
+                                        <Span Text="No crash" TextColor="Green"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=".Clear(): "/>
+                                        <Span Text="No crash" TextColor="Green"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </CollectionView.Header>
+                </CollectionView>
+                <Grid Grid.Row="1" ColumnDefinitions="*,*,*" BackgroundColor="LightGray">
+                    <Button Text="Add Item" Grid.Column="0"/>
+                    <Button Text="Remove Item" Grid.Column="1"/>
+                    <Button Text="Clear List" Grid.Column="2"/>
+                </Grid>
+            </Grid>
+        </xct:TabViewItem>
+    </xct:TabView>
+</ContentPage>
