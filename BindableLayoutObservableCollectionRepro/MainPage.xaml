@@ -22,7 +22,7 @@
             <Grid Margin="0,75,0,0" RowDefinitions="auto,*,75">
                 <StackLayout Padding="0,0,0,75">
                     <Label Text="BindableLayout (StackLayout)" FontAttributes="Bold"/>
-                    <Label Text="Perform the below actions on the ObservableCollection on a non-UI thread:"/>
+                    <Label Text="Using the buttons below, perform the following actions on the ObservableCollection on a non-UI thread:"/>
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
@@ -70,7 +70,7 @@
                     <ListView.Header>
                         <StackLayout Padding="0,0,0,75">
                             <Label Text="ListView" FontAttributes="Bold"/>
-                            <Label Text="Perform the below actions on the ObservableCollection on a non-UI thread:"/>
+                            <Label Text="Using the buttons below, perform the following actions on the ObservableCollection on a non-UI thread:"/>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -123,7 +123,7 @@
                     <CollectionView.Header>
                         <StackLayout Padding="0,0,0,75">
                             <Label Text="CollectionView" FontAttributes="Bold"/>
-                            <Label Text="Perform the below actions on the ObservableCollection on a non-UI thread:"/>
+                            <Label Text="Using the buttons below, perform the following actions on the ObservableCollection on a non-UI thread:"/>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
