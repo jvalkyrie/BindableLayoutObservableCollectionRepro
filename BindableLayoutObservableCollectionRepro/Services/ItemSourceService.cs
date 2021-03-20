@@ -14,7 +14,10 @@ namespace BindableLayoutObservableCollectionRepro.Services
 
         public ItemSourceService()
         {
-            itemSource = new ObservableCollection<string>();
+            itemSource = new ObservableCollection<string>()
+            {
+                "Item 1"
+            };
         }
 
         public ObservableCollection<string> GetItems()

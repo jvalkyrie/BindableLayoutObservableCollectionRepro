@@ -20,30 +20,30 @@
             FontAttributes="Bold"
             TextColorSelected="White">
             <Grid Margin="0,75,0,0" RowDefinitions="auto,*,75">
-                <StackLayout>
+                <StackLayout Padding="0,0,0,75">
                     <Label Text="BindableLayout (StackLayout)" FontAttributes="Bold"/>
-                    <Label Text="Item source: ObservableCollection"/>
+                    <Label Text="Perform the below actions on the ObservableCollection on a non-UI thread:"/>
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text=".Add(): "/>
-                                <Span Text="Crash" TextColor="Red"/>
+                                <Span Text="    .Add(): "/>
+                                <Span Text="Crashes" TextColor="Red"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text=".Remove(): "/>
-                                <Span Text="Crash" TextColor="Red"/>
+                                <Span Text="    .Remove(): "/>
+                                <Span Text="Crashes" TextColor="Red"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text=".Clear(): "/>
-                                <Span Text="Crash" TextColor="Red"/>
+                                <Span Text="    .Clear(): "/>
+                                <Span Text="Crashes" TextColor="Red"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -68,30 +68,30 @@
             <Grid Margin="0,75,0,0" RowDefinitions="*,75">
                 <ListView ItemsSource="{Binding ListViewItemSource}">
                     <ListView.Header>
-                        <StackLayout>
+                        <StackLayout Padding="0,0,0,75">
                             <Label Text="ListView" FontAttributes="Bold"/>
-                            <Label Text="Item source: ObservableCollection"/>
+                            <Label Text="Perform the below actions on the ObservableCollection on a non-UI thread:"/>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text=".Add(): "/>
-                                        <Span Text="No crash" TextColor="Green"/>
+                                        <Span Text="    .Add(): "/>
+                                        <Span Text="Doesn't crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text=".Remove(): "/>
-                                        <Span Text="No crash" TextColor="Green"/>
+                                        <Span Text="    .Remove(): "/>
+                                        <Span Text="Doesn't crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text=".Clear(): "/>
-                                        <Span Text="No crash" TextColor="Green"/>
+                                        <Span Text="    .Clear(): "/>
+                                        <Span Text="Doesn't crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -121,30 +121,30 @@
             <Grid Margin="0,75,0,0" RowDefinitions="*,75">
                 <CollectionView ItemsSource="{Binding CollectionViewItemSource}">
                     <CollectionView.Header>
-                        <StackLayout>
+                        <StackLayout Padding="0,0,0,75">
                             <Label Text="CollectionView" FontAttributes="Bold"/>
-                            <Label Text="Item source: ObservableCollection"/>
+                            <Label Text="Perform the below actions on the ObservableCollection on a non-UI thread:"/>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text=".Add(): "/>
-                                        <Span Text="No crash" TextColor="Green"/>
+                                        <Span Text="    .Add(): "/>
+                                        <Span Text="Doesn't crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text=".Remove(): "/>
-                                        <Span Text="No crash" TextColor="Green"/>
+                                        <Span Text="    .Remove(): "/>
+                                        <Span Text="Doesn't crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text=".Clear(): "/>
-                                        <Span Text="No crash" TextColor="Green"/>
+                                        <Span Text="    .Clear(): "/>
+                                        <Span Text="Doesn't crash" TextColor="Green"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
